@@ -42,7 +42,21 @@ void gameDeck::shuffle() //function shuffles all 52 cards
 void game::gameInstructions()
 {
    //TODO create game instructions
-   cout << "Placeholder" << endl;
+   cout << "The goal of blackjack is to beat the dealer by getting a count of cards as close to 21 as possible" << endl
+        << "without going over 21. Each card is worth its pip value, while Jack, Queen, and King are all worth 10." << endl
+        << "An Ace is worth either 1 or 11, determined by the player." << endl << endl
+        
+        << "The dealer has one face up card and one face down card. The player sees both of his cards and if he has a 10 and an ace" << endl
+        << "he has a natural blackjack and beats the dealer unless the dealer also has a natural blackjack." << endl << endl
+        
+        << "The player decides whether to hit(take another card) or stand(not ask for another card), once the player decides to stand, the dealer" << endl
+        << "shows his hidden card and will draw new cards until his count is 17 or above. In the case of the dealer having an ace bringing his" << endl
+        << "current hand value to 17 or more, the ace is treated as an 11 and the dealer will stand." << endl << endl
+        
+        << "If the players hand beats the dealers or the dealer busts, the player wins. If the player busts or his hand has a lower value" << endl
+        << "than the dealers, he loses. In the case of a natural blackjack, it is an automatic win unless the opposition has also has" << endl
+        << "a natural blackjack. A tie is possible." << endl;
+
 }
 
 int game::gameMenu()
@@ -68,6 +82,7 @@ void game::playGame()
    {
       gameDeck Deck1;
       Deck1.shuffle();
+      gameInstructions();
 
    } while (gameExit = 0);
    //Deck1.display();
