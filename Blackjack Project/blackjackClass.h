@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <string>
-#include <algorithm>
 
 using namespace std;
 
@@ -20,12 +19,12 @@ enum suit_e
 class card
 {
 public:
-   void set(int in_value, suit_e in_suit)
+   void set(int in_value, suit_e in_suit) //function sets value and suit of cards
    {
       value = in_value;
       suit = in_suit;
    }
-   void display()
+   void display() //switch function for displaying cards
    {
       string suit_str[4] = { "\x04", "\x03", "\x06", "\x05" };
       switch (value)
@@ -52,25 +51,31 @@ public:
    suit_e suit;
 };
 
+
 class gameDeck
 {
 public:
    gameDeck();
    ~gameDeck();
-   void shuffle();
-   void display();
+   void shuffle(); //shuffle cards
+   void display(); //display cards - temp function
+   void draw();    //draw a new card from deck
 
 private:
    int size;
    int currentCard;
    card *deck; //array of cards with a deck size of 52
-   static const unsigned int NUM_CARDS_PER_SUIT = 13;
+   static const unsigned int NUM_CARDS_PER_SUIT = 13; //maximum cards per suit
 };
 
 class game
 {
 public:
+   int gameMenu();
    void gameInstructions(); //instructions for play
-   void playGame(); //main game driver
+   void playGame(); //main game drive
+private:
+   bool gameExit;
+   int menuSelection;
 };
 #endif
