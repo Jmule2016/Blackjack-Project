@@ -65,16 +65,12 @@ void game::gameMenu()
    cout << "Welcome to the game of Blackjack." << endl;
    do
    {
-      int menuChoice;
+      int menuChoice = 0;
       cout << "Enter the number of your selection from the list below:" << endl;
       cout << "1)" << setw(8) << "Play Blackjack" << endl;
       cout << "2)" << setw(8) << "Instructions" << endl;
       cout << "3)" << setw(8) << "Exit Game" << endl;
       cin >> menuChoice;
-      while (menuChoice == 0 || menuChoice >= 4)
-      {
-         cin >> menuChoice;
-      }
       if (menuChoice == 1)
       {
          playGame();
@@ -90,6 +86,8 @@ void game::gameMenu()
       if(menuChoice != 1 && menuChoice != 2 && menuChoice != 3)
       {
          cout << "Invalid selection, please choice select between 1 and 3." << endl << endl;
+         cin.clear();
+         cin.ignore(numeric_limits<streamsize>::max(), '\n');
       }
    } while (gameExit != 1);
 }
