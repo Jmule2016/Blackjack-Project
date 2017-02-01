@@ -71,7 +71,7 @@ private:
 class game
 {
 public:
-   int gameMenu();
+   void gameMenu();
    void gameInstructions(); //instructions for play
    void playGame(); //main game drive
 private:

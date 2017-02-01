@@ -41,8 +41,9 @@ void gameDeck::shuffle() //function shuffles all 52 cards
 
 void game::gameInstructions()
 {
-   //TODO create game instructions
-   cout << "The goal of blackjack is to beat the dealer by getting a count of cards as close to 21 as possible" << endl
+   //TODO formatting
+   cout << endl 
+        << "The goal of blackjack is to beat the dealer by getting a count of cards as close to 21 as possible" << endl
         << "without going over 21. Each card is worth its pip value, while Jack, Queen, and King are all worth 10." << endl
         << "An Ace is worth either 1 or 11, determined by the player." << endl << endl
         
@@ -55,37 +56,49 @@ void game::gameInstructions()
         
         << "If the players hand beats the dealers or the dealer busts, the player wins. If the player busts or his hand has a lower value" << endl
         << "than the dealers, he loses. In the case of a natural blackjack, it is an automatic win unless the opposition has also has" << endl
-        << "a natural blackjack. A tie is possible." << endl;
+        << "a natural blackjack. A tie is possible." << endl << endl;
 
 }
 
-int game::gameMenu()
-{
-   int menuChoice;
-   cout << "Enter the number of your selection from the list below:" << endl;
-   cout << "1) " << setw(10) << "Play Blackjack" << endl;
-   cout << "2) " << setw(10) << "Instructions" << endl;
-   cout << "3) " << setw(10) << "Exit Game" << endl;
-   cin  >> menuChoice;
-   while (menuChoice == 0 || menuChoice >= 4)
-   {
-      cout << "Invalid selection, please choice select between 1 and 3." << endl;
-      cin  >> menuChoice;
-   }
-   return menuChoice;
-}
-
-void game::playGame()
+void game::gameMenu()
 {
    cout << "Welcome to the game of Blackjack." << endl;
    do
    {
-      gameDeck Deck1;
-      Deck1.shuffle();
-      gameInstructions();
+      int menuChoice;
+      cout << "Enter the number of your selection from the list below:" << endl;
+      cout << "1)" << setw(8) << "Play Blackjack" << endl;
+      cout << "2)" << setw(8) << "Instructions" << endl;
+      cout << "3)" << setw(8) << "Exit Game" << endl;
+      cin >> menuChoice;
+      while (menuChoice == 0 || menuChoice >= 4)
+      {
+         cin >> menuChoice;
+      }
+      if (menuChoice == 1)
+      {
+         playGame();
+      }
+      if (menuChoice == 2)
+      {
+         gameInstructions();
+      }
+      if (menuChoice == 3)
+      {
+         gameExit = 1;
+      }
+      if(menuChoice != 1 && menuChoice != 2 && menuChoice != 3)
+      {
+         cout << "Invalid selection, please choice select between 1 and 3." << endl << endl;
+      }
+   } while (gameExit != 1);
+}
 
-   } while (gameExit = 0);
-   //Deck1.display();
+void game::playGame()
+{
+   gameDeck Deck1;
+   Deck1.shuffle();
+
 }
 
 gameDeck::~gameDeck()
