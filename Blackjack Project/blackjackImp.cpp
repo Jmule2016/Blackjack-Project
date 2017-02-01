@@ -32,7 +32,7 @@ void gameDeck::display()
 void gameDeck::shuffle()
 {
    srand(time(NULL));
-   random_shuffle(&deck[0], &deck[51]);
+   random_shuffle(&deck[0], &deck[52]);
 }
 
 void game::gameInstructions()
