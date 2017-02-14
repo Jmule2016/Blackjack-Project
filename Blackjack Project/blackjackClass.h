@@ -59,7 +59,7 @@ public:
    ~gameDeck();
    void shuffle(); //shuffle cards
    void display(); //display cards - temp function
-   void draw();    //draw a new card from deck
+   card* draw();    //draw a new card from deck
 
 private:
    int size;

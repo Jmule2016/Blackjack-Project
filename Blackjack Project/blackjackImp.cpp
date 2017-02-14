@@ -10,6 +10,7 @@ gameDeck::gameDeck()
 {
    size = 52;
    deck = new card[size];
+   currentCard = 0;
    for (unsigned int cur_suit = 0; cur_suit < NUM_SUITS; cur_suit++)
    {
       for (unsigned int card_num = 0; card_num < NUM_CARDS_PER_SUIT; card_num++)
@@ -35,14 +36,26 @@ void gameDeck::display()
 
 void gameDeck::shuffle() //function shuffles all 52 cards
 {
-   srand(time(NULL));
+   srand((int)time(NULL));
    random_shuffle(&deck[0], &deck[52]);
+}
+
+card* gameDeck::draw()
+{
+   card* ret = NULL;
+   if (currentCard < 52)
+   {
+      ret = &deck[currentCard];
+      currentCard++;
+   }
+   return ret;
 }
 
 void game::gameInstructions()
 {
    //TODO formatting
    cout << endl 
+        << "*************************************************************************************************************************************" << endl
         << "The goal of blackjack is to beat the dealer by getting a count of cards as close to 21 as possible" << endl
         << "without going over 21. Each card is worth its pip value, while Jack, Queen, and King are all worth 10." << endl
         << "An Ace is worth either 1 or 11, determined by the player." << endl << endl
@@ -56,7 +69,9 @@ void game::gameInstructions()
         
         << "If the players hand beats the dealers or the dealer busts, the player wins. If the player busts or his hand has a lower value" << endl
         << "than the dealers, he loses. In the case of a natural blackjack, it is an automatic win unless the opposition has also has" << endl
-        << "a natural blackjack. A tie is possible." << endl << endl;
+        << "a natural blackjack. A tie is possible." << endl
+        << "*************************************************************************************************************************************" << endl
+        << endl;
 
 }
 
@@ -96,7 +111,18 @@ void game::playGame()
 {
    gameDeck Deck1;
    Deck1.shuffle();
-
+   //int count = 0;
+   //card* temp = null;
+   //do
+   //{
+   //   temp = deck1.draw();
+   //   if (temp != null)
+   //   {
+   //      count++;
+   //      temp->display();
+   //   }
+   //} while (temp != null);
+   //cout << "count = " << count << endl;
 }
 
 gameDeck::~gameDeck()
