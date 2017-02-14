@@ -64,7 +64,7 @@ public:
       default:
          ret = value + 1;
          break;
-      };
+      }
       return ret;
    }
 private:

@@ -206,7 +206,9 @@ void game::playGame()
       if (hit == 1)
       {
          hitPlayer(true);
+         showCards();
       }
+
    }
 }
 
