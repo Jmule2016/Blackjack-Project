@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -47,6 +48,26 @@ public:
       }
       cout << " of " << suit_str[suit] << endl;
    }
+   int getValue()
+   {
+      int ret = 0;
+      switch (value)
+      {
+      case 0:
+         ret = 1;
+         break;
+      case 10:
+      case 11:
+      case 12:
+         ret = 10;
+         break;
+      default:
+         ret = value + 1;
+         break;
+      };
+      return ret;
+   }
+private:
    int value;
    suit_e suit;
 };
@@ -74,8 +95,18 @@ public:
    void gameMenu();
    void gameInstructions(); //instructions for play
    void playGame(); //main game drive
+   void hitDealer(bool verbose);
+   void hitPlayer(bool verbose);
+   void showCards();
+   void resetGame();
+   int dealerCount();
+   int playerCount();
+
 private:
    bool gameExit;
    int menuSelection;
+   gameDeck Deck1;
+   vector<card*> dealerHand;
+   vector<card*> playerHand;
 };
 #endif

@@ -3,6 +3,7 @@
 #include <algorithm> //shuffle
 #include <chrono> //time
 #include <iomanip> //setw
+#include <vector> //vectors
 using namespace std;
 
 
@@ -107,22 +108,106 @@ void game::gameMenu()
    } while (gameExit != 1);
 }
 
+void game::hitDealer(bool verbose)
+{
+   if (verbose)
+   {
+      cout << "Dealer hits." << endl;
+   }
+   card* newCard = Deck1.draw();
+   if (newCard != NULL)
+   {
+      dealerHand.push_back(newCard);
+   }
+}
+
+void game::hitPlayer(bool verbose)
+{
+   if (verbose)
+   {
+      cout << "Player hits." << endl;
+   }
+   card* newCard = Deck1.draw();
+   if (newCard != NULL)
+   {
+      playerHand.push_back(newCard);
+   }
+}
+
+void game::showCards()
+{
+   cout << "Dealerhand: " << dealerCount() << endl;
+   for (unsigned int i = 0; i < dealerHand.size(); i++)
+   {
+      dealerHand[i]->display();
+   }
+   cout << endl;
+
+   cout << "Playerhand: " << playerCount() << endl;
+   for (unsigned int i = 0; i < playerHand.size(); i++)
+   {
+      playerHand[i]->display();
+   }
+   cout << endl;
+
+}
+
+void game::resetGame()
+{
+   Deck1.shuffle();
+   playerHand.clear();
+   dealerHand.clear();
+}
+
+int game::dealerCount()
+{
+   int ret = 0;
+   for (unsigned int i = 0; i < dealerHand.size(); i++)
+   {
+      ret += dealerHand[i]->getValue();
+   }
+   return ret;
+}
+
+int game::playerCount()
+{
+   int ret = 0;
+   for (unsigned int i = 0; i < playerHand.size(); i++)
+   {
+      ret += playerHand[i]->getValue();
+   }
+   return ret;
+
+}
+
+
+
 void game::playGame()
 {
-   gameDeck Deck1;
-   Deck1.shuffle();
-   //int count = 0;
-   //card* temp = null;
-   //do
-   //{
-   //   temp = deck1.draw();
-   //   if (temp != null)
-   //   {
-   //      count++;
-   //      temp->display();
-   //   }
-   //} while (temp != null);
-   //cout << "count = " << count << endl;
+   resetGame();
+   hitDealer(false);
+   hitPlayer(false);
+   hitDealer(false);
+   hitPlayer(false);
+
+   showCards();
+   while (dealerCount() < 17)
+   {
+      hitDealer(true);
+      showCards();
+   }
+
+   int hit = 1;
+   while (hit == 1 && playerCount() < 21)
+   {
+      cout << "Would you like to hit(1 or 0)? ";
+      cin  >> hit;
+      cout << endl;
+      if (hit == 1)
+      {
+         hitPlayer(true);
+      }
+   }
 }
 
 gameDeck::~gameDeck()
